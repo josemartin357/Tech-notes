@@ -30,3 +30,11 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 module.exports = router;
+
+// ROUTES NOTES:
+
+// ***** 1 ******
+// WHEN I click on the dashboard option in the navigation
+// THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
+// =>GET ROUTE AT "/", FINDALL()
+// DASHBOARDROUTES

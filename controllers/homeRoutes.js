@@ -1,6 +1,6 @@
 const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
-const withAuth = require("../utils/auth");
+// const withAuth = require("../utils/auth");
 
 // GET all posts for homepage
 router.get("/", async (req, res) => {
@@ -83,7 +83,6 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-
   res.render("login");
 });
 
@@ -93,3 +92,11 @@ router.get("/signup", (req, res) => {
 });
 
 module.exports = router;
+
+// ROUTES NOTES
+
+// **** 1 ***** DONE
+// WHEN I visit the site for the first time
+// THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+// HOMEROUTES
+// => ROUTE: "/" => GET ROUTE: FINDALL() POSTS
