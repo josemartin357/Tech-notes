@@ -4,13 +4,14 @@ const withAuth = require("../utils/auth");
 
 // GET route withAuth to find all posts including comment in the "/" route
 router.get("/", withAuth, async (req, res) => {
+  console.log("dashboard works!");
   try {
     const dbPostsData = await Post.findAll(req.session.user_id, {
-      attributes: ["id", "title", "content", "date_created"],
+      // attributes: ["id", "title", "content", "date_created"],
       include: [
         {
           model: Comment,
-          attributes: ["id", "comment", "post_id", "user_id", "dated_created"],
+          // attributes: ["id", "comment", "post_id", "user_id", "dated_created"],
           include: {
             model: User,
             attributes: ["username"],

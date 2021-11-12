@@ -1,6 +1,6 @@
 // Seeding commentSeed, postSeed,userSeed. Reference: exercise 20, chapter 14
 
-const sequelize = require("./config/connection");
+const sequelize = require("../config/connection");
 const seedUsers = require("./usersData");
 const seedPosts = require("./postsData");
 const seedComments = require("./commentsData");

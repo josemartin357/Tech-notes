@@ -18,48 +18,6 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// GET one post
-router.get("/:id", async (req, res) => {
-  try {
-    const postData = await Post.findOne(req.params.id, {
-      attributes: ["id", "title", "content", "date_created"],
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-          attributes: [
-            "id",
-            "comment_text",
-            "post_id",
-            "user_id",
-            "date_created",
-          ],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-      ],
-    });
-
-    if (!postData) {
-      res.status(404).json({ message: "No post found with that id!" });
-      return;
-    }
-    const post = postData.get({ plain: true });
-
-    res.render("singlePost", {
-      ...post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // UPDATE one post
 router.put("/:id", withAuth, async (req, res) => {
   try {

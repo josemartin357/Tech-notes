@@ -4,19 +4,19 @@ const postsData = [
   {
     title: "Test 1",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Content for test 1, Content for test 1, Content for test 1, Content for test 1, Content for test 1, Content for test 1,",
     user_id: 1,
   },
   {
     title: "Test 2",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Content for test 2, Content for test 2, Content for test 2, Content for test 2, Content for test 2, Content for test 2, ",
     user_id: 2,
   },
   {
     title: "Test 3",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Content for test 3, Content for test 3, Content for test 3, Content for test 3, Content for test 3, Content for test 3, ",
     user_id: 3,
   },
 ];

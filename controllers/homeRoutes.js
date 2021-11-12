@@ -3,10 +3,11 @@ const router = require("express").Router();
 // const withAuth = require("../utils/auth");
 
 // GET all posts for homepage
+// TESTED: WORKS
 router.get("/", async (req, res) => {
+  // console.log("This works!");
   try {
     const dbPostsData = await Post.findAll({
-      attributes: ["id", "title", "content", "date_created"],
       include: [
         {
           model: User,
@@ -28,33 +29,38 @@ router.get("/", async (req, res) => {
   }
 });
 
-// // GET one post
-// router.get("/post/:id", async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       attributes: ["id", "title", "content", "date_created"],
-//       include: [
-//         {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//       ],
-//     });
-
-//     if (!postData) {
-//       res.status(404).json({ message: "No post found with that id!" });
-//       return;
-//     }
-//     const post = postData.get({ plain: true });
-
-//     res.render("singlePost", {
-//       ...post,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// GET one post
+// TESTED: WORKS
+router.get("/post/:id", async (req, res) => {
+  console.log("post id works");
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+          include: [User],
+        },
+      ],
+    });
+    // console.log(postData);
+    if (!postData) {
+      res.status(404).json({ message: "No post found with that id!" });
+      // return;
+    }
+    const post = postData.get({ plain: true });
+    console.log(post);
+    res.render("singlePost", {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // withAuth middleware to prevent access to route
 // router.get("/????", withAuth, async (req, res) => {
@@ -77,6 +83,7 @@ router.get("/", async (req, res) => {
 // });
 
 // LOGIN route from homepage
+// TESTED: DISPLAYS login handlebars
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -87,6 +94,7 @@ router.get("/login", (req, res) => {
 });
 
 // SIGN-UP route from homepage
+// TESTED: DISPLAYS signup handlebars
 router.get("/signup", (req, res) => {
   res.render("signup");
 });

@@ -1,0 +1,9 @@
+<div>
+  <h1>Homepage: All posts</h1>
+  {{#each posts}}
+    <a href="/post/{{id}}">
+      <h1>{{title}}</h1>
+    </a>
+    <p>{{content}}</p>
+  {{/each}}
+</div>
