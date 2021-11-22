@@ -11,7 +11,6 @@ router.post("/", withAuth, async (req, res) => {
       date_created: req.body.date_created,
       user_id: req.session.user_id,
     });
-
     res.status(200).json(newPost);
   } catch (err) {
     res.status(400).json(err);

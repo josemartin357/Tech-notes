@@ -40,7 +40,11 @@
       {{#each posts as |post|}}
         <div>
           <div>
-            <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4>
+            {{!-- <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4> --}}
+            {{! MB: PENDING- NEED TO FIGURE OUT HOW TO TURN EVERY post INTO A LINK THAT TAKES IT TO THAT SPECIFIC POST USING id }}
+            <h4>{{post.title}}</h4>
+            <p>{{post.content}}</p>
+            <p>{{post.date_created}}</p>
           </div>
           <div>
             <button data-id="{{post.id}}">DELETE</button>
