@@ -1,9 +1,9 @@
 const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
-// const withAuth = require("../utils/auth");
+const withAuth = require("../utils/auth");
 
 // GET all posts for homepage
-// TESTED: WORKS
+// TESTED: WORKS; WHEN USER ENTERS SITE, THEN ALL POSTS ARE DISPLAYED
 router.get("/", async (req, res) => {
   // console.log("This works!");
   try {
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     // Pass serialized data and session flag into template
     res.render("homepage", {
       posts,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one post
-// TESTED: WORKS
+// TESTED: WORKS!; WHEN USER SELECTS A POST FROM HOMEPAGE; THEN USER IS REDIRECTED TO PAGE WITH SINGLE POST DETAILS
 router.get("/post/:id", async (req, res) => {
   console.log("post id works");
   try {
@@ -63,43 +63,45 @@ router.get("/post/:id", async (req, res) => {
 });
 
 // withAuth middleware to prevent access to route
-// router.get("/????", withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ["????"] },
-//       include: [{ model: Project }],
-//     });
+router.get("/profile", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: Post }],
+    });
 
-//     const user = userData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-//     res.render("????", {
-//       ...user,
-//       logged_in: true,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render("profile", {
+      ...user,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // LOGIN route from homepage
-// TESTED: DISPLAYS login handlebars
+// TESTED: WHEN USER CLICKS ON LOGIN; THEN USER IS REDIRECTED TO LOGIN PAGE
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/profile");
     return;
   }
   res.render("login");
 });
 
+module.exports = router;
+
 // SIGN-UP route from homepage
 // TESTED: DISPLAYS signup handlebars
-router.get("/signup", (req, res) => {
-  res.render("signup");
-});
+// router.get("/signup", (req, res) => {
+//   res.render("signup");
+// });
 
-module.exports = router;
+// module.exports = router;
 
 // ROUTES NOTES
 

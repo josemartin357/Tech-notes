@@ -1,20 +1,44 @@
-// Seeding commentSeed, postSeed,userSeed. Reference: exercise 20, chapter 14
-
 const sequelize = require("../config/connection");
-const seedUsers = require("./usersData");
-const seedPosts = require("./postsData");
-const seedComments = require("./commentsData");
+const { User, Post, Comment } = require("../models");
 
-const seedAll = async () => {
-  await sequelize.sync({ force: true });
+const userData = require("./userData.json");
+const postData = require("./postsData.json");
+const commentData = require("./commentsData.json");
 
-  await seedUsers();
+const seedDatabase = async () => {
+  try {
+    //Added try/catch to handle errors and view then in console
 
-  await seedPosts();
+    await sequelize.sync({ force: true });
+    console.log("\n----- DATABASE SYNCED -----\n");
 
-  await seedComments();
+    const users = await User.bulkCreate(userData, {
+      individualHooks: true,
+      returning: true,
+    });
+    console.log("\n----- USERS SEEDED -----\n");
 
-  process.exit(0);
+    const seededPosts = await Post.bulkCreate(postData, {
+      returning: true,
+    });
+    console.log("\n----- POSTS SEEDED -----\n");
+
+    const seededComments = await Comment.bulkCreate(commentData, {
+      returning: true,
+    });
+    console.log("\n----- POSTS SEEDED -----\n");
+
+    // for (const project of projectData) {
+    //   await Project.create({
+    //     ...project,
+    //     user_id: users[Math.floor(Math.random() * users.length)].id,
+    //   });
+    // }
+
+    process.exit(0);
+  } catch (err) {
+    console.log(err); //console.log the error if there is one
+  }
 };
 
-seedAll();
+seedDatabase();

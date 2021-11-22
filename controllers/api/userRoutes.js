@@ -1,66 +1,59 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
-// CREATE new user
+// TESTED: WORKS! WHEN USER ENTERS USERNAME, EMAIL AND PASSWORD; A USER ACCOUNT IS CREATED AND SAVED AND USER IS REDIRECTED TO HOMEPAG
+
 router.post("/", async (req, res) => {
   try {
-    const dbUserData = await User.create({
-      username: req.body.username,
-      password: req.body.password,
-    });
+    const userData = await User.create(req.body);
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
 
-      res.status(200).json(dbUserData);
+      res.status(200).json(userData);
     });
   } catch (err) {
+    res.status(400).json(err);
     console.log(err);
-    res.status(500).json(err);
   }
 });
 
-// LOGIN
+// TESTED: WORKS! WHEN USER CHOOSES TO LOGIN WITH EMAIL + PASSWORD; USER IS LOGGED IN AND REDIRECTED TO HOMEPAGE. OPTION TO LOGOUT APPEARS IN UPPER CORNER
 router.post("/login", async (req, res) => {
   try {
-    const dbUserData = await User.findOne({
-      where: {
-        email: req.body.username,
-      },
-    });
-
-    if (!dbUserData) {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+    console.log(userData);
+    if (!userData) {
       res
         .status(400)
-        .json({ message: "Incorrect username or password. Please try again!" });
+        .json({ message: "Incorrect email or password, please try again" });
       return;
     }
 
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: "Incorrect username or password. Please try again!" });
+        .json({ message: "Incorrect email or password, please try again" });
       return;
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
 
-      res
-        .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+      res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
-// LOGOUT
+// TESTED: WORKS! AFTER USER LOGS IN, THEN A LOGOUT BUTTON APPEARS IN UPPER CORNER. WHEN USER CLICKS IT, SESSION IS DESTROYED
 router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
