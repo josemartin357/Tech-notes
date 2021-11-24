@@ -82,6 +82,23 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
+// ROUTE FOR UPDATE POST
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    const postInfo = await Post.findByPk(req.params.id);
+    if (!postInfo) {
+      res.status(400).json("Post not found");
+    }
+    const singlePost = postInfo.get({ plain: true });
+    res.render("editPost", {
+      singlePost,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // LOGIN route from homepage
 // TESTED: WHEN USER CLICKS ON LOGIN; THEN USER IS REDIRECTED TO LOGIN PAGE
 router.get("/login", (req, res) => {

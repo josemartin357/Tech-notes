@@ -1,14 +1,36 @@
-{{! <div>
-  <h3>Edit Post</h3>
-  <form>
-    <label>Title</label>
-    <input />
-    <label>Content</label>
-    <input />
-    <button>Update Post</button>
-    <button>Delete Post</button>
-  </form>
+<div>
+  <div>
+    <h2>Update posts!</h2>
+  </div>
 </div>
 
-<script src="/public/js/editPost.js"></script>
-<script src="/public/js/deletePost.js"></script> }}
+<div>
+  <div>
+    <form class="form update-post-form">
+      {{! passing title from Post model }}
+      <div>
+        <label for="post-title">title:</label>
+        <input
+          class="form-input"
+          type="text"
+          id="post-title"
+          name="post-title"
+        />
+      </div>
+      {{! passing content from Post model }}
+      <div class="form-group">
+        <label for="post-content">Content:</label>
+        <textarea
+          class="form-input"
+          id="post-content"
+          name="post-content"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <button data-id="{{singlePost.id}}" type="click" class="btn btn-primary">Update Post</button>
+      </div>
+    </form>
+  </div>
+
+<script src="/js/editPost.js"></script>
+{{! <script src="/public/js/deletePost.js"></script>  }}
