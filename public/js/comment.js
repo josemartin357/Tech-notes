@@ -1,8 +1,7 @@
+// event handler to create a comment
 const newCommentHandler = async (event) => {
   event.preventDefault();
-  // console.log(
-  //   document.querySelector("#comment-content").getAttribute("data-id")
-  // );
+
   const id = document.querySelector("#comment-content").getAttribute("data-id");
   const comment = document.querySelector("#comment-content").value.trim();
   console.log(comment);
@@ -19,18 +18,16 @@ const newCommentHandler = async (event) => {
     });
 
     if (response.ok) {
-      //   check this route
       // document.location.replace("/profile");
       // document.location.replace("/post/");
       document.location.reload();
     } else {
       alert("Failed to create comment");
-      // console.log(response.statusText);
     }
   }
 };
 
-// MB: TESTING DELETE BUTTON FOR COMMENT
+// event handler to delete comment
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");

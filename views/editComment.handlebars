@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <h2>Update your comment</h2>
+  </div>
+</div>
+
+<div>
+  <form class="update-comment-form">
+    <label for="comment-content">Your comment:</label>
+    <textarea
+      data-id={{id}}
+      class="form-input"
+      id="comment-content"
+      name="comment-content"
+    ></textarea>
+    <div class="form-group">
+      <button
+        data-id="{{singleComment.id}}"
+        type="click"
+        class="btn btn-primary"
+      >Update Comment</button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/editComment.js"></script>

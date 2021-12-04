@@ -15,6 +15,12 @@
       <div>
         <button data-id="{{comment.id}}">DELETE</button>
       </div>
+
+      <div>
+        <a href="/edit-comment/{{comment.id}}">
+          <button>UPDATE</button>
+        </a>
+      </div>
     {{/each}}
   </div>
 {{/if}}
@@ -28,7 +34,7 @@
       name="comment-content"
     ></textarea>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">ADD COMMENT</button>
   </form>
 </div>
 

@@ -84,7 +84,7 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
-// ROUTE FOR UPDATE POST
+// Route to get post by id to then edit
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const postInfo = await Post.findByPk(req.params.id);
@@ -95,6 +95,24 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     res.render("editPost", {
       singlePost,
       logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Route to get comment by id to then edit
+router.get("/edit-comment/:id", withAuth, async (req, res) => {
+  try {
+    const commentInfo = await Comment.findByPk(req.params.id);
+    if (!commentInfo) {
+      res.status(400).json("Comment not found");
+    }
+    const singleComment = commentInfo.get({ plain: true });
+    res.render("editComment", {
+      singleComment,
+      // logged_in: true,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);

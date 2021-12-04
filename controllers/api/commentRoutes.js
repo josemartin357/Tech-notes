@@ -19,6 +19,33 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+// put route to update comment
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    const commentData = await Comment.update(
+      {
+        comment: req.body.comment,
+      },
+      {
+        where: {
+          id: req.params.id,
+          // NOT WORKING preventing others from updating
+          user_id: req.session.user_id,
+        },
+      }
+    );
+
+    if (!commentData) {
+      res.status(404).json({ message: "No comment found with this id!" });
+      return;
+    }
+
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // DELETE one comment
 router.delete("/:id", withAuth, async (req, res) => {
   try {
