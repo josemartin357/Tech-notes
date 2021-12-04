@@ -41,15 +41,14 @@
         <div>
           <div>
 
-            {{!-- <h4>{{post.title}}</h4> --}}
             <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
             <p>{{post.content}}</p>
-            <p>{{post.date_created}}</p>
+            <p>{{format_date post.date_created}}</p>
           </div>
           <div>
             <button data-id="{{post.id}}">DELETE</button>
           </div>
-          {{! MB: WORKING ON UPDATE BUTTON }}
+
           <div>
             <a href="/edit/{{post.id}}">
               <button>UPDATE</button>

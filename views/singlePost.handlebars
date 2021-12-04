@@ -1,17 +1,23 @@
-{{! SINGLE POST ROUTE WORKING }}
 <div>
   <h1>{{title}}</h1>
   <p>{{content}}</p>
-  <p>Date created: {{date_created}}</p>
+  <p>Date created: {{format_date date_created}}</p>
   <p>Created by: {{user.username}}</p>
 </div>
-{{! MB TESTING WITHOUT PUSHING comment PARTIAL }}
-{{!-- {{> comment}} --}}
-{{#each comments as |comment|}}
-  <p>{{comment.user.username}} says: "{{comment.comment}}"</p>
-  <p>on {{format_date comment.date_created}}</p>
-{{/each}}
 
+{{#if comments.length}}
+  <div class="comment-list">
+    <h3>Comments for this post</h3>
+    {{#each comments as |comment|}}
+      <p>{{comment.user.username}} says: "{{comment.comment}}"</p>
+      <p>on {{format_date comment.date_created}}</p>
+
+      <div>
+        <button data-id="{{comment.id}}">DELETE</button>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
 <div>
   <form class="new-comment-form">
     <label for="comment-content">Post your comment:</label>

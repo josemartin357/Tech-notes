@@ -1,4 +1,3 @@
-// TESTED: WORKS!
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -23,7 +22,6 @@ const loginFormHandler = async (event) => {
   }
 };
 
-// TESTED: WORKS!
 const signupFormHandler = async (event) => {
   event.preventDefault();
 

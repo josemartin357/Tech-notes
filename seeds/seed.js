@@ -28,13 +28,6 @@ const seedDatabase = async () => {
     });
     console.log("\n----- POSTS SEEDED -----\n");
 
-    // for (const project of projectData) {
-    //   await Project.create({
-    //     ...project,
-    //     user_id: users[Math.floor(Math.random() * users.length)].id,
-    //   });
-    // }
-
     process.exit(0);
   } catch (err) {
     console.log(err); //console.log the error if there is one
