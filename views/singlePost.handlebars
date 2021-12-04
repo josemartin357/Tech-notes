@@ -5,3 +5,27 @@
   <p>Date created: {{date_created}}</p>
   <p>Created by: {{user.username}}</p>
 </div>
+{{! MB TESTING WITHOUT PUSHING comment PARTIAL }}
+{{!-- {{> comment}} --}}
+{{#each comments as |comment|}}
+  <p>{{comment.user.username}} says: "{{comment.comment}}"</p>
+  <p>on {{format_date comment.date_created}}</p>
+{{/each}}
+
+<div>
+  <form class="new-comment-form">
+    <label for="comment-content">Post your comment:</label>
+    <textarea
+      data-id={{id}}
+      class="form-input"
+      id="comment-content"
+      name="comment-content"
+    ></textarea>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
+
+{{#if logged_in}}
+  <script src="/js/comment.js"></script>
+{{/if}}

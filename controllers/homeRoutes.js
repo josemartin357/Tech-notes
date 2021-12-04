@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
 
 // GET one post
 // TESTED: WORKS!; WHEN USER SELECTS A POST FROM HOMEPAGE; THEN USER IS REDIRECTED TO PAGE WITH SINGLE POST DETAILS
+// PENDING: PULL COMMENT INFO IN POST/:ID
 router.get("/post/:id", async (req, res) => {
   console.log("post id works");
   try {
@@ -42,7 +43,11 @@ router.get("/post/:id", async (req, res) => {
         },
         {
           model: Comment,
-          include: [User],
+          include: [
+            {
+              model: User,
+            },
+          ],
         },
       ],
     });
