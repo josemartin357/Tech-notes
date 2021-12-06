@@ -9,4 +9,10 @@ module.exports = {
       date
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
+  verify_login: (username, commentorname) => {
+    if (username == commentorname) {
+      return true;
+    }
+    return false;
+  },
 };

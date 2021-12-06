@@ -4,32 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog</title>
-    <link rel="stylesheet" href="/css/jass.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+
   </head>
 
   <body>
-    <div>
-      <header>
-        <div>
-          <h1>The Tech Blog</h1>
-          <nav>
-            <a class="link" href="/">Home</a>
-            <a class="link" href="/profile">Dashboard</a>
-            {{#if logged_in}}
-              <a class="link" href="/" id="logout">Logout</a>
-            {{else}}
-              <a class="link" href="/login">Login</a>
 
-            {{/if}}
-          </nav>
-        </div>
-      </header>
+    <header>
+      <div class="bg-light py-5">
+        <h1 class="text-center">
+          TECHIE
+          <small class="text-muted">blog</small>
+        </h1>
+        <h5 class="text-center text-muted">
+          Sharing knowledge makes us stronger
+        </h5>
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <a
+            class="link flex-sm-fill text-sm-center nav-link active"
+            href="/"
+          >Home</a>
+          <a
+            class="link flex-sm-fill text-sm-center nav-link"
+            href="/profile"
+          >Add a post</a>
+          {{#if logged_in}}
+            <a
+              class="link flex-sm-fill text-sm-center nav-link"
+              href="/"
+              id="logout"
+            >Logout</a>
+          {{else}}
+            <a
+              class="link flex-sm-fill text-sm-center nav-link"
+              href="/login"
+            >Login | Sign-up</a>
+          {{/if}}
+        </nav>
+      </div>
+    </header>
 
-      <main>
-        {{{body}}}
-      </main>
-    </div>
+    <main>
+      {{{body}}}
+    </main>
 
     <!-- Render script for logged in users only -->
     {{#if logged_in}}

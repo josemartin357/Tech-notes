@@ -1,57 +1,80 @@
-<div>
-  <div>
-    <h2>Dashboard: Welcome!</h2>
+<section class="py-1 text-center container">
+  <div class="row py-lg-3">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="app-title fw-light">Be part of the community
+      </h3>
+      <p class="lead text-muted">
+        Add your tech post here
+      </p>
+    </div>
   </div>
-</div>
+</section>
 
 <div>
   <div>
-    <h3>Create a new post:</h3>
-    <form class="form new-post-form">
+    <form class="form new-post-form form-floating">
       {{! passing title from Post model }}
-      <div>
-        <label for="post-title">title:</label>
+      <div class="form-outline mb-4 col-lg-9">
+        <label class="form-label text-muted" for="post-title">Title of your
+          post:</label>
         <input
-          class="form-input"
+          class="form-input form-control"
           type="text"
           id="post-title"
           name="post-title"
         />
       </div>
       {{! passing content from Post model }}
-      <div class="form-group">
-        <label for="post-content">Content:</label>
+      <div class="form-outline mb-4 form-group col-lg-9">
+        <label for="post-content" class="form-label text-muted">Write your
+          content here:</label>
         <textarea
-          class="form-input"
+          class="form-input form-control"
           id="post-content"
           name="post-content"
+          rows="4"
         ></textarea>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+
+      <div class="form-group col-lg-3">
+        <button type="submit" class="btn btn-primary btn-block mb-4">Submit your
+          post</button>
       </div>
     </form>
   </div>
 
   {{#if posts.length}}
-    <div class="post-list">
-      <h3>Current Posts:</h3>
+    <div class="post-list col-lg-6 col-md-8 mx-auto">
+      <h3 class="app-title fw-light">The posts you've shared</h3>
 
       {{#each posts as |post|}}
-        <div>
-          <div>
+        <div class="card text-center">
+          <div class="card-body">
 
-            <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-            <p>{{post.content}}</p>
-            <p>{{format_date post.date_created}}</p>
+            <h5 class="card-title"><a
+                href="/post/{{post.id}}"
+              >{{post.title}}</a></h5>
+            <p class="card-text">{{post.content}}</p>
+            <p class="card-footer text-muted">
+              Posted on:
+              {{format_date post.date_created}}</p>
           </div>
           <div>
-            <button data-id="{{post.id}}">DELETE</button>
+            <button
+              type="button"
+              class="btn btn-light"
+              data-mdb-color="dark"
+              data-id="{{post.id}}"
+            >Delete</button>
           </div>
 
           <div>
             <a href="/edit/{{post.id}}">
-              <button>UPDATE</button>
+              <button
+                type="button"
+                class="btn btn-light"
+                data-mdb-color="dark"
+              >Update</button>
             </a>
           </div>
         </div>

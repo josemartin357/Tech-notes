@@ -1,24 +1,39 @@
-<div>
-  <h1>{{title}}</h1>
-  <p>{{content}}</p>
-  <p>Date created: {{format_date date_created}}</p>
-  <p>Created by: {{user.username}}</p>
+<div class="card text-center">
+  <div class="card-header">{{title}}</div>
+  <div class="card-body">
+    <h5 class="card-title">Created by: {{user.username}}</h5>
+    <p class="card-text">
+      {{content}}
+    </p>
+  </div>
+  <div class="card-footer text-muted">Date created:
+    {{format_date date_created}}</div>
 </div>
 
 {{#if comments.length}}
-  <div class="comment-list">
-    <h3>Comments for this post</h3>
+  <div class="comment-list pt-5">
+    <h4>What the TECHIE community is saying about this topic:</h4>
     {{#each comments as |comment|}}
-      <p>{{comment.user.username}} says: "{{comment.comment}}"</p>
-      <p>on {{format_date comment.date_created}}</p>
+      <h5 class="mt-4">{{comment.user.username}} says:</h5>
+      <p class="lead">"{{comment.comment}}"</p>
+      <h5>- comment made on {{format_date comment.date_created}}</h5>
 
       <div>
-        <button data-id="{{comment.id}}">DELETE</button>
+        <button
+          type="button"
+          class="btn btn-light"
+          data-mdb-color="dark"
+          data-id="{{comment.id}}"
+        >DELETE</button>
       </div>
 
       <div>
         <a href="/edit-comment/{{comment.id}}">
-          <button>UPDATE</button>
+          <button
+            type="button"
+            class="btn btn-light"
+            data-mdb-color="dark"
+          >UPDATE</button>
         </a>
       </div>
     {{/each}}

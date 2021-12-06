@@ -1,10 +1,48 @@
-<div>
-  <h1>Homepage: All posts</h1>
-  {{#each posts}}
-    <a href="/post/{{id}}">
-      <h1>{{title}}</h1>
-    </a>
+<section class="py-2 text-center container">
+  <div class="row py-lg-4">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="app-title fw-light">Got a question?
+        <br />
+        A non-working function? Styling maybe?</h3>
+      <p class="lead text-muted">
+        Share it with us and see what others are talking about
+      </p>
+    </div>
+  </div>
+</section>
 
-    <p>Date created: {{format_date date_created}}</p>
+<div>
+  {{#each posts}}
+
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        {{! for tablets and desktops }}
+        <div id="postCardWide">
+          <p
+            class="card-text text-truncate d-inline-block"
+            style="max-width: 600px;"
+          >
+            {{content}}
+          </p>
+        </div>
+        {{! for screen width below 400px width, mobile }}
+        <div id="postCardSmall">
+          <p
+            class="card-text text-truncate d-inline-block"
+            style="max-width: 300px;"
+          >
+            {{content}}
+          </p>
+        </div>
+
+        <div>
+          <a href="/post/{{id}}" class="btn btn-primary">See full post</a>
+        </div>
+      </div>
+      <div class="card-footer text-muted">Created on
+        {{format_date date_created}}</div>
+    </div>
+
   {{/each}}
 </div>

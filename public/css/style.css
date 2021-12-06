@@ -1,0 +1,17 @@
+@media only screen and (max-width: 445px) {
+  #postCardWide {
+    display: none;
+  }
+  #postCardSmall {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  #postCardSmall {
+    display: none;
+  }
+  #postCardWide {
+    display: inline-block;
+  }
+}

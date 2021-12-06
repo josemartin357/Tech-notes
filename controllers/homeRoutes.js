@@ -55,9 +55,17 @@ router.get("/post/:id", async (req, res) => {
     }
     const post = postData.get({ plain: true });
     console.log(post);
+    /**for(let i = 0;i<post.comments.length;i++){
+     * if(req.seesion.user_id===post.comment[i].user_id){
+     * post.comment[i].isWriter = true;
+     *  }else{
+     *    post.comment[i].isWriter = false;
+     * }
+     * } */
     res.render("singlePost", {
       ...post,
       logged_in: req.session.logged_in,
+      username: req.session.username,
     });
   } catch (err) {
     res.status(500).json(err);

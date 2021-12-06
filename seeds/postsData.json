@@ -1,14 +1,14 @@
 [
   {
-    "title": "Test 1",
-    "content": "Content for test 1, Content for test 1, Content for test 1, Content for test 1, Content for test 1, Content for test 1,"
+    "title": "What is MVC (Model View Controller? ",
+    "content": "I've heard the term MVC (Model View Controller) tossed about with a ton of Buzz lately, but what really is it?"
   },
   {
-    "title": "Test 2",
-    "content": "Content for test 2, Content for test 2, Content for test 2, Content for test 2, Content for test 2, Content for test 2, "
+    "title": "What exactly is Heroku?",
+    "content": "I just started learning Ruby on rails and I was wondering what Heroku really is? I know that its a cloud that helps us to avoid using servers? When do we actually use it?"
   },
   {
-    "title": "Test 3",
-    "content": "Content for test 3, Content for test 3, Content for test 3, Content for test 3, Content for test 3, Content for test 3, "
+    "title": "What is MVC, really?",
+    "content": "As a serious programmer, how do you answer the question What is MVC?. There seem to be disagreements regarding strictness, component definition, separation of parts (what piece fits where), etc. So, how should I explain MVC?"
   }
 ]
