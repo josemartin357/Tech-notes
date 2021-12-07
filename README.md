@@ -15,6 +15,10 @@ This app follows the MVC (Models-views-controllers) paradigm in its architectura
 ## Video demonstration
 
 
+https://user-images.githubusercontent.com/83382332/144985700-e22ab490-7361-4325-b9cd-72e87f2967ec.mp4
+
+
+
 ## Screenshot sample
 Desktop version
 ![Techie-blog-desktop](https://user-images.githubusercontent.com/83382332/144983632-e842f3c1-0515-456b-a926-bb8e8144788f.jpeg)
@@ -39,7 +43,7 @@ Mobile version
 * [Contribution](#contribution)
 * [License](#license)
 * [Questions](#questions)
-* 
+
 ## Installation
 To install project, simply clone repository or download documents and save them to your computer. 
 Also, type in terminal `npm i` or `npm install` to install dependency packages needed.
